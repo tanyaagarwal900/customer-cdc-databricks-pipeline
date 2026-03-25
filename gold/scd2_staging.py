@@ -1,7 +1,8 @@
 from pyspark.sql.functions import *
 
 def prepare_scd2_staging():
-    silver_df = spark.read.table("silver_customer_events")
+    silver_df = spark.read.table("silver_customer_events") \
+    .orderBy("customer_id", "update_ts")
 
     current_dim = spark.table("dim_customer").filter("is_current = true")
 
