@@ -32,14 +32,13 @@ def prepare_scd2_staging():
         col("d.city"),
         col("d.status"),
         col("d.start_date"),
-        col("s.update_ts").alias("end_date"),
+        expr("s.update_ts - INTERVAL 1 SECOND").alias("end_date"),
         lit(False).alias("is_current")
     )
 
     valid_inserts = new_records.union(changed_records)
     
     insert_records = valid_inserts.select(
-    monotonically_increasing_id().alias("customer_sk"),
     col("s.customer_id"),
     col("s.name"),
     col("s.email"),
