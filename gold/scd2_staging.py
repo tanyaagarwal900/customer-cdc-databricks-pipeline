@@ -12,9 +12,7 @@ def prepare_scd2_staging():
         "left"
     )
     
-    new_records = joined_df.filter(
-    col("d.customer_id").isNull()
-)
+    new_records = joined_df.filter(col("d.customer_id").isNull())
     
     changed_records = joined_df.filter(
         col("d.customer_id").isNotNull() & (
