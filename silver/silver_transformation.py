@@ -6,6 +6,7 @@ def run_silver_pipeline():
 
     silver_df = bronze_df \
         .withColumn("update_ts", to_timestamp("update_ts")) \
+        .withWatermark("update_ts", "1 day") \
         .filter(col("customer_id").isNotNull()) \
         .filter(col("operation").isin("INSERT","UPDATE"))
 
