@@ -2,7 +2,6 @@ MERGE INTO dim_customer AS target
 USING staged_updates AS source
 ON target.customer_id = source.customer_id
 AND target.is_current = true
-AND target.start_date = source.start_date
 
 WHEN MATCHED AND source.is_current = false
 THEN UPDATE SET
