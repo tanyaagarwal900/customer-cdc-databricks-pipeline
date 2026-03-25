@@ -20,6 +20,7 @@ def prepare_scd2_staging():
     )
 
     expire_records = change_records.select(
+        col("d.customer_sk"),
         col("d.customer_id"),
         col("d.name"),
         col("d.email"),
@@ -31,6 +32,7 @@ def prepare_scd2_staging():
     )
 
     insert_records = silver_df.select(
+        monotonically_increasing_id().alias("customer_sk"),
         col("customer_id"),
         col("name"),
         col("email"),
