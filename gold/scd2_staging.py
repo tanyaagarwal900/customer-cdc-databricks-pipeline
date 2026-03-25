@@ -19,7 +19,8 @@ def prepare_scd2_staging():
         col("d.customer_id").isNotNull() & (
             (col("s.city") != col("d.city")) |
             (col("s.email") != col("d.email")) |
-            (col("s.status") != col("d.status"))
+            (col("s.status") != col("d.status"))|
+            (col("s.name") != col("d.name"))
         )
     )
  
