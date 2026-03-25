@@ -10,7 +10,6 @@ target.is_current = false
 
 WHEN NOT MATCHED
 THEN INSERT (
-customer_sk,
 customer_id,
 name,
 email,
@@ -21,7 +20,6 @@ end_date,
 is_current
 )
 VALUES (
-source.customer_sk,
 source.customer_id,
 source.name,
 source.email,
